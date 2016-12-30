@@ -202,3 +202,10 @@ span {
 	display: inline;
 	margin: 0;
 }
+
+/****** Poll Styling ******/
+
+.btn-add-option {	/* Styling for add-option button */
+	background-color: #ECEFF1;
+	color: #212121;
+}

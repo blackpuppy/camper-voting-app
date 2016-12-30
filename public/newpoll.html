@@ -16,27 +16,31 @@
             <a class="menu" href="/logout">Logout</a>
         </header>
 
-        <div class="container">
+        <form class="container">
             <p>
-                <span>Name you poll: </span>
+                <span>Name you poll:</span>
                 <br />
-                <input id="question" name="question" class="profile-value" placeholder="What is your favorite color?">
+                <input type="text" id="question" name="question" class="profile-value" placeholder="What is your favorite color?" required>
             </p>
-            <p>
-                <span>Options: </span>
+            <p class="option-container">
+                <span>Options:</span>
                 <br />
-                <input name="option[]" class="profile-value" placeholder="Green">
+                <input type="text" name="option[]" class="profile-value" placeholder="Green" required>
                 <br />
-                <input name="option[]" class="profile-value" placeholder="Red">
+                <input type="text" name="option[]" class="profile-value" placeholder="Red" required>
             </p>
             <br />
             <div class="btn-container">
-                <button class="btn btn-add">More Option</button>
+                <button class="btn btn-add-option">More Option</button>
             </div>
-        </div>
+            <br />
+            <div class="btn-container">
+                <button type="submit" class="btn btn-add">Submit</button>
+            </div>
+        </form>
 
-        <script type="text/javascript" src="common/ajax-functions.js"></script>
-        <script type="text/javascript" src="controllers/userController.client.js"></script>
+        <script type="text/javascript" src="../common/ajax-functions.js"></script>
+        <script type="text/javascript" src="../controllers/pollController.client.js"></script>
     </body>
 
 </html>
