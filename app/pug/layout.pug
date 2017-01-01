@@ -1,0 +1,13 @@
+doctype html
+html
+    head
+        title Voteboard - #{title}
+        block styles
+            link(rel='stylesheet', type='text/css', href='/public/css/main.css')
+    body
+        block content
+        block foot
+            footer#footer
+                //p some footer content
+        block scripts
+            script(src='../common/ajax-functions.js')

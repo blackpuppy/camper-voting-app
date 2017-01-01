@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+    h1 My Polls
+
+    if polls.length
+        ul
+            each poll in polls
+                li
+                    a(href='/polls/' + poll._id) #{poll.question}
+    else
+        | You don't have any polls.
+        a(href='/polls/new') Create one now?

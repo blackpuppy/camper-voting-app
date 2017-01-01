@@ -1,8 +1,10 @@
 'use strict';
 
-var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
-var PollHandler = require(path + '/app/controllers/pollHandler.server.js');
+var path = require('path');
+
+var cwd = process.cwd();
+var ClickHandler = require(cwd + '/app/controllers/clickHandler.server.js');
+var PollHandler = require(cwd + '/app/controllers/pollHandler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -19,12 +21,12 @@ module.exports = function (app, passport) {
 
     app.route('/')
         .get(isLoggedIn, function (req, res) {
-            res.sendFile(path + '/public/index.html');
+            res.sendFile(cwd + '/public/index.html');
         });
 
     app.route('/login')
         .get(function (req, res) {
-            res.sendFile(path + '/public/login.html');
+            res.sendFile(cwd + '/public/login.html');
         });
 
     app.route('/logout')
@@ -35,7 +37,7 @@ module.exports = function (app, passport) {
 
     app.route('/profile')
         .get(isLoggedIn, function (req, res) {
-            res.sendFile(path + '/public/profile.html');
+            res.sendFile(cwd + '/public/profile.html');
         });
 
     app.route('/api/:id')
@@ -58,14 +60,11 @@ module.exports = function (app, passport) {
         .delete(isLoggedIn, clickHandler.resetClicks);
 
     app.route('/polls')
-        .get(isLoggedIn, function (req, res) {
-            // TODO: retrieve and show all my polls
-            res.sendFile(path + '/public/mypolls.html');
-        });
+        .get(isLoggedIn, pollHandler.getPolls);
 
     app.route('/polls/new')
         .get(isLoggedIn, function (req, res) {
-            res.sendFile(path + '/public/newpoll.html');
+            res.sendFile(cwd + '/public/newpoll.html');
         });
         // .post(
         //     isLoggedIn,
@@ -79,7 +78,7 @@ module.exports = function (app, passport) {
     app.route('/polls/:id')
         .get(isLoggedIn, function (req, res) {
             // TODO: read poll by :id, and render it
-            res.sendFile(path + '/public/mypoll.html');
+            res.sendFile(cwd + '/public/mypoll.html');
         });
 
     app.route('/api/polls')

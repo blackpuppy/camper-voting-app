@@ -1,11 +1,13 @@
 'use strict';
 
 var express = require('express');
-var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var path = require('path');
+
+var routes = require('./app/routes/index.js');
 
 var app = express();
 require('dotenv').load();
@@ -16,6 +18,9 @@ mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+app.set("view engine", "pug");
+app.set('views', path.join(__dirname, 'app/pug'));
 
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));

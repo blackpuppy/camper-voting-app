@@ -7,12 +7,13 @@ function PollHandler () {
 
     this.getPolls = function (req, res) {
         Poll
-            .findOne({'id': req.user.github.id})
-            // TODO: next?
-            .exec(function (err, result) {
+            .find({'userGitHubId': req.user.github.id})
+            .exec(function (err, polls) {
                 if (err) { throw err; }
 
-                res.json(result);
+                // console.log('getPolls: polls = ', JSON.stringify(polls));
+
+                res.render('mypolls', {polls: polls});
             });
     };
 
