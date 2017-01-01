@@ -205,6 +205,10 @@ span {
 
 /****** Poll Styling ******/
 
+.btn-new-poll {
+	background-color: #5CB85C;
+}
+
 .btn-add-option {	/* Styling for add-option button */
 	background-color: #ECEFF1;
 	color: #212121;

@@ -16,18 +16,18 @@
             <a class="menu" href="/logout">Logout</a>
         </header>
 
-        <form class="container">
+        <form id="poll-form" method="post" class="container">
             <p>
                 <span>Name you poll:</span>
                 <br />
-                <input type="text" id="question" name="question" class="profile-value" placeholder="What is your favorite color?" required>
+                <input type="text" id="question" name="question" placeholder="What is your favorite color?" required>
             </p>
             <p class="option-container">
                 <span>Options:</span>
                 <br />
-                <input type="text" name="option[]" class="profile-value" placeholder="Green" required>
+                <input type="text" name="option[]" placeholder="Green" required>
                 <br />
-                <input type="text" name="option[]" class="profile-value" placeholder="Red" required>
+                <input type="text" name="option[]" placeholder="Red" required>
             </p>
             <br />
             <div class="btn-container">
@@ -35,7 +35,7 @@
             </div>
             <br />
             <div class="btn-container">
-                <button type="submit" class="btn btn-add">Submit</button>
+                <button type="submit" class="btn btn-submit">Submit</button>
             </div>
         </form>
 

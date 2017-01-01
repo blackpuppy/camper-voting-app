@@ -2,6 +2,7 @@
 
 var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var PollHandler = require(path + '/app/controllers/pollHandler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -14,6 +15,7 @@ module.exports = function (app, passport) {
     }
 
     var clickHandler = new ClickHandler();
+    var pollHandler = new PollHandler();
 
     app.route('/')
         .get(isLoggedIn, function (req, res) {
@@ -57,6 +59,7 @@ module.exports = function (app, passport) {
 
     app.route('/polls')
         .get(isLoggedIn, function (req, res) {
+            // TODO: retrieve and show all my polls
             res.sendFile(path + '/public/mypolls.html');
         });
 
@@ -64,4 +67,35 @@ module.exports = function (app, passport) {
         .get(isLoggedIn, function (req, res) {
             res.sendFile(path + '/public/newpoll.html');
         });
+        // .post(
+        //     isLoggedIn,
+        //     // pollHandler.createPoll,
+        //     function (req, res, poll) {
+        //         // res.redirect('/polls/' + poll._id);
+        //         res.send('saved poll: ' + JSON.stringify(poll));
+        //     }
+        // );
+
+    app.route('/polls/:id')
+        .get(isLoggedIn, function (req, res) {
+            // TODO: read poll by :id, and render it
+            res.sendFile(path + '/public/mypoll.html');
+        });
+
+    app.route('/api/polls')
+        // .get(isLoggedIn, pollHandler.getPolls)
+        .post(isLoggedIn,
+            // pollHandler.createPoll
+            function (req, res) {   // test
+                console.log('POST /api/polls: req.body = ', req.body);
+
+                res.setHeader('Content-Type', 'application/json');
+                // res.write('you posted:\n');
+                res.end(JSON.stringify(req.body, null, 2));
+            }
+        );
+
+    // app.route('/api/polls/:id')
+    //     .post(isLoggedIn, pollHandler.updatePoll)
+    //     .delete(isLoggedIn, pollHandler.deletePolls);
 };
