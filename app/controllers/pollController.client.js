@@ -27,27 +27,18 @@
     submitButton.addEventListener('click', function (e) {
         e.preventDefault();
 
-        var form = document.querySelector('form');
-        var questionField = document.getElementsByName('question')[0];
-        var optionFields = document.getElementsByName('option[]');
-
-        console.log('form submit: optionFields = ', optionFields);
-
         var options = [];
-        optionFields.forEach(function (input) {
+        document.getElementsByName('option[]').forEach(function (input) {
             options.push({
                 text: input.value,
                 votes: 0
             });
         });
-
-        // var poll = new FormData(form);
         var poll = {
-            question: questionField.value,
+            question: document.getElementsByName('question')[0].value,
             options: options
         };
 
-        // console.log('form submit: form = ', form);
         console.log('form submit: poll = ', poll);
 
         ajaxFunctions.ajaxRequest('POST', apiUrl, function (data) {

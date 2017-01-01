@@ -85,14 +85,14 @@ module.exports = function (app, passport) {
     app.route('/api/polls')
         // .get(isLoggedIn, pollHandler.getPolls)
         .post(isLoggedIn,
-            // pollHandler.createPoll
-            function (req, res) {   // test
-                console.log('POST /api/polls: req.body = ', req.body);
+            pollHandler.createPoll
+            // function (req, res) {   // test
+            //     console.log('POST /api/polls: req.body = ', req.body);
 
-                res.setHeader('Content-Type', 'application/json');
-                // res.write('you posted:\n');
-                res.end(JSON.stringify(req.body, null, 2));
-            }
+            //     res.setHeader('Content-Type', 'application/json');
+            //     // res.write('you posted:\n');
+            //     res.end(JSON.stringify(req.body, null, 2));
+            // }
         );
 
     // app.route('/api/polls/:id')

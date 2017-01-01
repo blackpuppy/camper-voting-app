@@ -1,12 +1,12 @@
 'use strict';
 
 var Users = require('../models/users.js');
-var Polls = require('../models/polls.js');
+var Poll = require('../models/polls.js');
 
 function PollHandler () {
 
     this.getPolls = function (req, res) {
-        Polls
+        Poll
             .findOne({'id': req.user.github.id})
             // TODO: next?
             .exec(function (err, result) {
@@ -19,17 +19,17 @@ function PollHandler () {
     this.createPoll = function (req, res) {
         console.log('createPoll(): req.body = ', req.body);
 
-        var options = [];
-        req.body.options.forEach(function (o) {
-            options.push({
-                text: o,
-                votes: 0
-            });
-        });
+        // var options = [];
+        // req.body.options.forEach(function (o) {
+        //     options.push({
+        //         text: o,
+        //         votes: 0
+        //     });
+        // });
         var newPoll = new Poll({
             userGitHubId: req.user.github.id,
             question: req.body.question,
-            options: options
+            options: req.body.options
         });
 
         console.log('new poll to save: ', newPoll);
