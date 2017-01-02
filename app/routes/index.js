@@ -80,14 +80,17 @@ module.exports = function (app, passport) {
         .get(isLoggedIn, pollHandler.getPoll, function (req, res) {
             var poll = req.poll;
             // console.log('/polls/:id: poll = ', JSON.stringify(poll));
-            res.render('polls/mypoll', {poll: poll});
+            res.render('polls/mypoll', {
+                poll: poll,
+                pollJson: JSON.stringify(poll)
+            });
         });
 
     app.route('/polls/:id/vote')
         .get(pollHandler.getPoll, function (req, res) {
             var poll = req.poll;
             // console.log('/polls/:id/vote: poll = ', JSON.stringify(poll));
-            res.render('polls/pollvote', {poll: poll});
+            res.render('votes/pollvote', {poll: poll});
         })
         .post(pollHandler.votePoll);
 
@@ -95,7 +98,7 @@ module.exports = function (app, passport) {
         .get(pollHandler.getPoll, function (req, res) {
             var poll = req.poll;
             // console.log('/polls/:id/votes: poll = ', JSON.stringify(poll));
-            res.render('polls/pollvotes', {
+            res.render('votes/pollvotes', {
                 poll: poll,
                 pollJson: JSON.stringify(poll)
             });

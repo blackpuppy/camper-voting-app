@@ -23,7 +23,7 @@ function PollHandler () {
             .exec(function (err, poll) {
                 if (err) { throw err; }
 
-                console.log('getPoll: poll = ', JSON.stringify(poll));
+                // console.log('getPoll: poll = ', JSON.stringify(poll));
 
                 // res.render('polls/mypoll', {poll: poll});
 
@@ -80,7 +80,7 @@ function PollHandler () {
             .exec(function (err, poll) {
                 if (err) { throw err; }
 
-                console.log('votePoll: saved poll = ', JSON.stringify(poll));
+                // console.log('votePoll: saved poll = ', JSON.stringify(poll));
 
                 res.redirect('/polls/' + poll._id + '/votes');
             });

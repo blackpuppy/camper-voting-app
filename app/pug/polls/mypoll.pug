@@ -1,21 +1,32 @@
 extends ../layouts/member.pug
 
 block content
-    .container
-        h2 My Poll
+    h2 #{poll.question}
 
-        .container
-            if poll
-                p
-                    a(href='/polls/' + poll._id) #{poll.question}
-                    a(href='/polls/' + poll._id + '/vote', class='btn btn-vote-poll') Vote
-            else
-                | #{'The poll does not exist. Back to '}
-                a(href='/polls') my polls
-                | .
-
-        br/
-
+    if poll
         .container
             .btn-container
-                a(href='/polls' class='btn btn-polls') My Polls
+                //- a(href='/polls/' + poll._id) #{poll.question}
+                a(href='/polls/' + poll._id + '/vote', class='btn btn-vote-poll') Vote
+        .vote-chart
+    else
+        .container
+            | #{'The poll does not exist. Back to '}
+            a(href='/polls') my polls
+            | .
+
+    br/
+
+    .container
+        .btn-container
+            a(href='/polls' class='btn btn-polls') My Polls
+
+block append scripts
+    = '\n'
+    script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
+    = '\n'
+    script(type='text/javascript').
+        var poll = JSON.parse('!{pollJson}');
+        //- console.log('poll = ', poll);
+    = '\n'
+    script(type='text/javascript', src='/controllers/pollChart.client.js')
