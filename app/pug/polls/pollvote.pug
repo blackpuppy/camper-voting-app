@@ -1,0 +1,14 @@
+extends ../layouts/layout.pug
+
+block content
+    .container
+        h2 Poll
+
+        .container
+            if poll
+                p
+                    a(href='/polls/' + poll._id) #{poll.question}
+            else
+                | #{'The poll does not exist. Back to '}
+                a(href='/polls') my polls
+                | .

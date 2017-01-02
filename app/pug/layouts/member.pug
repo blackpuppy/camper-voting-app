@@ -1,0 +1,16 @@
+extends layout
+
+block header
+    header
+        p
+            | #{'Welcome, '}
+            span(id='display-name')
+            | !
+        a(class='menu' href='/') Home
+        p |
+        a(class='menu' href='/profile') Profile
+        p |
+        a(class='menu' href='/logout') Logout
+
+block append scripts
+    script(src='/controllers/userController.client.js')

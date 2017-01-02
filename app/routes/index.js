@@ -65,7 +65,7 @@ module.exports = function (app, passport) {
     app.route('/polls/new')
         .get(isLoggedIn, function (req, res) {
             // res.sendFile(cwd + '/public/newpoll.html');
-            res.render('newpoll');
+            res.render('polls/newpoll');
         });
         // .post(
         //     isLoggedIn,
@@ -77,7 +77,18 @@ module.exports = function (app, passport) {
         // );
 
     app.route('/polls/:id')
-        .get(isLoggedIn, pollHandler.getPoll);
+        .get(isLoggedIn, pollHandler.getPoll, function (req, res) {
+            var poll = req.poll;
+            console.log('/polls/:id: poll = ', JSON.stringify(poll));
+            res.render('polls/mypoll', {poll: poll});
+        });
+
+    app.route('/polls/:id/vote')
+        .get(isLoggedIn, pollHandler.getPoll, function (req, res) {
+            var poll = req.poll;
+            console.log('/polls/:id/vote: poll = ', JSON.stringify(poll));
+            res.render('polls/pollvote', {poll: poll});
+        });
 
     app.route('/api/polls')
         // .get(isLoggedIn, pollHandler.getPolls)

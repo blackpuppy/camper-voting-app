@@ -13,19 +13,22 @@ function PollHandler () {
 
                 // console.log('getPolls: polls = ', JSON.stringify(polls));
 
-                res.render('mypolls', {polls: polls});
+                res.render('polls/mypolls', {polls: polls});
             });
     };
 
-    this.getPoll = function (req, res) {
+    this.getPoll = function (req, res, next) {
         Poll
             .findOne({'_id': req.params.id})
             .exec(function (err, poll) {
                 if (err) { throw err; }
 
-                // console.log('getPoll: poll = ', JSON.stringify(poll));
+                console.log('getPoll: poll = ', JSON.stringify(poll));
 
-                res.render('mypoll', {poll: poll});
+                // res.render('polls/mypoll', {poll: poll});
+
+                req.poll = poll;
+                return next();
             });
     };
 

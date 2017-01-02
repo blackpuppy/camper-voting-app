@@ -1,4 +1,4 @@
-extends layout.pug
+extends ../layouts/member.pug
 
 block content
     .container
@@ -8,6 +8,7 @@ block content
             if poll
                 p
                     a(href='/polls/' + poll._id) #{poll.question}
+                    a(href='/polls/' + poll._id + '/vote', class='btn btn-vote-poll') Vote
             else
                 | #{'The poll does not exist. Back to '}
                 a(href='/polls') my polls

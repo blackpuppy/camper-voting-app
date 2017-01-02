@@ -5,19 +5,11 @@ html
         block styles
             link(rel='stylesheet', type='text/css', href='/public/css/main.css')
     body
-        header
-            p
-                | #{'Welcome, '}
-                span(id='display-name')
-                | !
-            a(class='menu' href='/') Home
-            p |
-            a(class='menu' href='/profile') Profile
-            p |
-            a(class='menu' href='/logout') Logout
+        block header
 
         .container
             //- img(src='/public/img/clementine_150.png')
+            br/
             br/
             p(class='clementine-text') Voteboard
             p #[em The dashboard to manage and share your polls.]
@@ -30,7 +22,5 @@ html
             footer#footer
                 //p some footer content
 
-        script(src='/common/ajax-functions.js')
-        script(src='/controllers/userController.client.js')
-
         block scripts
+            script(src='/common/ajax-functions.js')

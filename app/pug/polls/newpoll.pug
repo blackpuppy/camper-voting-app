@@ -1,4 +1,4 @@
-extends layout.pug
+extends ../layouts/member.pug
 
 block content
     .container
@@ -22,5 +22,5 @@ block content
             .btn-container
                 button(type='submit' class='btn btn-submit-new-poll') Submit
 
-block scripts
+block append scripts
     script(src='/controllers/pollController.client.js')
