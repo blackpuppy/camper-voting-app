@@ -5,9 +5,28 @@ html
         block styles
             link(rel='stylesheet', type='text/css', href='/public/css/main.css')
     body
+        header
+            p
+                | #{'Welcome, '}
+                span(id='display-name')
+                | !
+            a(class='menu' href='/profile') Profile
+            p |
+            a(class='menu' href='/logout') Logout
+
+        .container
+            //- img(src='/public/img/clementine_150.png')
+            br/
+            p(class='clementine-text') Voteboard
+            p The dashboard to manage and share your polls.
+
         block content
+
         block foot
             footer#footer
                 //p some footer content
+
+        script(src='/common/ajax-functions.js')
+        script(src='/controllers/userController.client.js')
+
         block scripts
-            script(src='../common/ajax-functions.js')

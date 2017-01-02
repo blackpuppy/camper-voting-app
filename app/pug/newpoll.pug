@@ -1,0 +1,26 @@
+extends layout.pug
+
+block content
+    .container
+        h2 New Poll
+
+        form(id='poll-form' method='post' class='container')
+            p
+                span Name you poll:
+                br/
+                input(type='text' id='question' name='question' placeholder='What is your favorite color?' required)
+            p.option-container
+                span Options:
+                br/
+                input(type='text' name='option[]' placeholder='Green' required)
+                br/
+                input(type='text' name='option[]' placeholder='Red' required)
+            br/
+            .btn-container
+                button(class='btn btn-add-option') More Option
+            br/
+            .btn-container
+                button(type='submit' class='btn btn-submit') Submit
+
+block scripts
+    script(src='/controllers/pollController.client.js')
