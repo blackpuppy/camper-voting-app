@@ -77,10 +77,7 @@ module.exports = function (app, passport) {
         // );
 
     app.route('/polls/:id')
-        .get(isLoggedIn, function (req, res) {
-            // TODO: read poll by :id, and render it
-            res.sendFile(cwd + '/public/mypoll.html');
-        });
+        .get(isLoggedIn, pollHandler.getPoll);
 
     app.route('/api/polls')
         // .get(isLoggedIn, pollHandler.getPolls)

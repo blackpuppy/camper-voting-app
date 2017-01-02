@@ -17,6 +17,18 @@ function PollHandler () {
             });
     };
 
+    this.getPoll = function (req, res) {
+        Poll
+            .findOne({'_id': req.params.id})
+            .exec(function (err, poll) {
+                if (err) { throw err; }
+
+                // console.log('getPoll: poll = ', JSON.stringify(poll));
+
+                res.render('mypoll', {poll: poll});
+            });
+    };
+
     this.createPoll = function (req, res) {
         console.log('createPoll(): req.body = ', req.body);
 
