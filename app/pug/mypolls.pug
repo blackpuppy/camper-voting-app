@@ -9,6 +9,9 @@ block content
                     li.poll-item
                         a(href='/polls/' + poll._id) #{poll.question}
                         button(class='btn btn-delete-poll', data-poll-id=poll._id) Delete
+            .container
+                .btn-container
+                    a(href='/polls/new' class='btn btn-polls') New Poll
         else
             p
                 | #{"You don't have any polls. "}
