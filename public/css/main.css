@@ -232,3 +232,9 @@ span {
 	background-color: #D9534F;
 	color: white;
 }
+
+.vote-chart div div {
+	display: block;
+	margin: 0 auto;
+	/*width: 50%;*/
+}

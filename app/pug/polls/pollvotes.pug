@@ -1,17 +1,28 @@
 extends ../layouts/layout.pug
 
 block content
-    .container
-        if poll
-            h2 #{poll.question}
-            .container
-                p
-                    each option in poll.options
-                        span #{option.text}
-                        | #{' - '}
-                        span #{option.votes}
-                        br/
-        else
+    if poll
+        h2 #{poll.question}
+        //- .container
+        //-     p
+        //-         each option in poll.options
+        //-             span #{option.text}
+        //-             | #{' - '}
+        //-             span #{option.votes}
+        //-             br/
+        .vote-chart
+    else
+        .container
             | #{'The poll does not exist. Back to '}
             a(href='/') Home
             | .
+
+block append scripts
+    = '\n'
+    script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
+    = '\n'
+    script(type='text/javascript').
+        var poll = JSON.parse('!{pollJson}');
+        //- console.log('poll = ', poll);
+    = '\n'
+    script(type='text/javascript', src='/controllers/pollChart.client.js')
