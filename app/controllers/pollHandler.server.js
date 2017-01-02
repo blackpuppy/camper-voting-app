@@ -35,13 +35,6 @@ function PollHandler () {
     this.createPoll = function (req, res) {
         // console.log('createPoll(): req.body = ', req.body);
 
-        // var options = [];
-        // req.body.options.forEach(function (o) {
-        //     options.push({
-        //         text: o,
-        //         votes: 0
-        //     });
-        // });
         var newPoll = new Poll({
             userGitHubId: req.user.github.id,
             question: req.body.question,
@@ -69,6 +62,27 @@ function PollHandler () {
 
                 res.setHeader('Content-Type', 'application/json');
                 res.json({result: 'OK'});
+            });
+    };
+
+    this.votePoll = function (req, res) {
+        console.log('votePoll: req.body.vote = ', req.body.vote);
+
+        Poll
+            .findOneAndUpdate({
+                '_id': req.params.id,
+                'options.text': req.body.vote
+            }, {
+                $inc: {
+                    'options.$.votes': 1
+                }
+            })
+            .exec(function (err, poll) {
+                if (err) { throw err; }
+
+                console.log('votePoll: saved poll = ', JSON.stringify(poll));
+
+                res.redirect('/polls/' + poll._id + '/votes');
             });
     };
 

@@ -39,7 +39,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container p,
-.container ul {
+.container ul,
+.container form {
 	text-align: center;
 	padding: 0;
 }

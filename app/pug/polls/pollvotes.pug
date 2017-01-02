@@ -1,0 +1,17 @@
+extends ../layouts/layout.pug
+
+block content
+    .container
+        if poll
+            h2 #{poll.question}
+            .container
+                p
+                    each option in poll.options
+                        span #{option.text}
+                        | #{' - '}
+                        span #{option.votes}
+                        br/
+        else
+            | #{'The poll does not exist. Back to '}
+            a(href='/') Home
+            | .

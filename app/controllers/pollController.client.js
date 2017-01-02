@@ -1,16 +1,16 @@
 'use strict';
 
-(function() {
+(function () {
 
     var optionContainer = document.querySelector('.option-container');
     var addOptButton = document.querySelector('.btn-add-option');
     var submitNewPollButton = document.querySelector('.btn-submit-new-poll');
     var deletePollButton = document.querySelector('.btn-delete-poll');
-    var listApiUrl = appUrl + '/api/polls';
-    // var itemApiUrl = appUrl + '/api/polls/:id';
+    var submitVoteButton = document.querySelector('.btn-submit-vote');
+    var apiUrl = appUrl + '/api/polls';
 
     addOptButton &&
-    addOptButton.addEventListener('click', function(e) {
+    addOptButton.addEventListener('click', function (e) {
         e.preventDefault();
 
         // console.log('.btn-add-option clicked:');
@@ -28,11 +28,11 @@
     }, false);
 
     submitNewPollButton &&
-    submitNewPollButton.addEventListener('click', function(e) {
+    submitNewPollButton.addEventListener('click', function (e) {
         e.preventDefault();
 
         var options = [];
-        document.getElementsByName('option[]').forEach(function(input) {
+        document.getElementsByName('option[]').forEach(function (input) {
             options.push({
                 text: input.value,
                 votes: 0
@@ -45,7 +45,7 @@
 
         console.log('form submit: poll = ', poll);
 
-        ajaxFunctions.ajaxRequest('POST', listApiUrl, function(data) {
+        ajaxFunctions.ajaxRequest('POST', apiUrl, function (data) {
             var result = JSON.parse(data);
 
             if (result.result === 'OK') {
@@ -55,14 +55,14 @@
     }, false);
 
     deletePollButton &&
-    deletePollButton.addEventListener('click', function(e) {
+    deletePollButton.addEventListener('click', function (e) {
         e.preventDefault();
 
         var id = deletePollButton.getAttribute('data-poll-id');
         // console.log('deletePollButton.data-poll-id = ', id);
 
-        var deleteApiUrl = listApiUrl + '/' + id;
-        ajaxFunctions.ajaxRequest('DELETE', deleteApiUrl, function(data) {
+        var deleteApiUrl = apiUrl + '/' + id;
+        ajaxFunctions.ajaxRequest('DELETE', deleteApiUrl, function (data) {
             console.log('DELETE ', deleteApiUrl, ': data = ', data);
             var result = JSON.parse(data);
             console.log('DELETE ', deleteApiUrl, ': result = ', result);
@@ -72,4 +72,9 @@
             }
         });
     }, false);
+
+    // submitNewPollButton &&
+    // submitNewPollButton.addEventListener('click', function (e) {
+    //     e.preventDefault();
+    // }, false);
 })();

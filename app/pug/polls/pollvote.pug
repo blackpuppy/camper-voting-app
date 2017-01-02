@@ -2,13 +2,18 @@ extends ../layouts/layout.pug
 
 block content
     .container
-        h2 Poll
-
-        .container
-            if poll
-                p
-                    a(href='/polls/' + poll._id) #{poll.question}
-            else
-                | #{'The poll does not exist. Back to '}
-                a(href='/polls') my polls
-                | .
+        if poll
+            h2 #{poll.question}
+            form(id='poll-form' method='post' class='container')
+                each option in poll.options
+                    label
+                        input(type='radio', name='vote', value=option.text)
+                        | #{option.text}
+                    br/
+                br/
+                .btn-container
+                    button(type='submit' class='btn btn-submit-vote') Vote!
+        else
+            | #{'The poll does not exist. Back to '}
+            a(href='/') Home
+            | .
