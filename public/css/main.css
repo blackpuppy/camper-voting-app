@@ -218,3 +218,16 @@ span {
 	background-color: #ECEFF1;
 	color: #212121;
 }
+
+.poll-item {
+	padding: 10px;
+}
+
+.poll-item button {
+	cursor: pointer;
+}
+
+.btn-delete-poll {	/* Styling for delete-poll button */
+	background-color: #D9534F;
+	color: white;
+}

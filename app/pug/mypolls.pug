@@ -6,8 +6,13 @@ block content
         if polls.length
             ul
                 each poll in polls
-                    li
+                    li.poll-item
                         a(href='/polls/' + poll._id) #{poll.question}
+                        button(class='btn btn-delete-poll', data-poll-id=poll._id) Delete
         else
-            | #{"You don't have any polls. "}
-            a(href='/polls/new') Create one now?
+            p
+                | #{"You don't have any polls. "}
+                a(href='/polls/new') Create one now?
+
+block scripts
+    script(src='/controllers/pollController.client.js')

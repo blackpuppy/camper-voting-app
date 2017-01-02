@@ -30,7 +30,7 @@ function PollHandler () {
     };
 
     this.createPoll = function (req, res) {
-        console.log('createPoll(): req.body = ', req.body);
+        // console.log('createPoll(): req.body = ', req.body);
 
         // var options = [];
         // req.body.options.forEach(function (o) {
@@ -50,22 +50,23 @@ function PollHandler () {
         newPoll.save(function (err, poll) {
             if (err) { throw err; }
 
-            console.log('saved new poll: ', poll);
+            // console.log('saved new poll: ', poll);
 
             res.setHeader('Content-Type', 'application/json');
-            res.json(JSON.stringify(poll));
+            res.json({result: 'OK', poll: poll});
         });
     };
 
-    this.resetClicks = function (req, res) {
-        Users
-            .findOneAndUpdate({ 'github.id': req.user.github.id }, { 'nbrClicks.clicks': 0 })
+    this.deletePoll = function (req, res) {
+        Poll
+            .findOne({'_id': req.params.id})
+            .remove()
             .exec(function (err, result) {
-                    if (err) { throw err; }
+                if (err) { throw err; }
 
-                    res.json(result.nbrClicks);
-                }
-            );
+                res.setHeader('Content-Type', 'application/json');
+                res.json({result: 'OK'});
+            });
     };
 
 }

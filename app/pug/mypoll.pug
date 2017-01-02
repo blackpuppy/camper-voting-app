@@ -3,10 +3,18 @@ extends layout.pug
 block content
     .container
         h2 My Poll
-        if poll
-            p
-                a(href='/polls/' + poll._id) #{poll.question}
-        else
-            | #{"The poll does not exist. Back to "}
-            a(href='/polls') my polls
-            | .
+
+        .container
+            if poll
+                p
+                    a(href='/polls/' + poll._id) #{poll.question}
+            else
+                | #{'The poll does not exist. Back to '}
+                a(href='/polls') my polls
+                | .
+
+        br/
+
+        .container
+            .btn-container
+                a(href='/polls' class='btn btn-polls') My Polls
