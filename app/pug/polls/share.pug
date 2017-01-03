@@ -4,10 +4,9 @@ block content
     if poll
         h2 #{poll.question}
         .container
-            .btn-container
-                //- a(href='/polls/' + poll._id) #{poll.question}
-                a(href='/polls/' + poll._id + '/vote', class='btn btn-vote-poll') Vote
-        .vote-chart
+            p
+                input(id='poll-url', type='text', value=webroot + '/polls/' + poll._id + '/vote')
+                button(class='btn btn-copy-url', data-clipboard-target='#poll-url') Copy URL
         br/
         .container
             .btn-container
@@ -22,10 +21,7 @@ block content
 
 block append scripts
     = '\n'
-    script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js')
     = '\n'
     script(type='text/javascript').
-        var poll = JSON.parse('!{pollJson}');
-        //- console.log('poll = ', poll);
-    = '\n'
-    script(type='text/javascript', src='/controllers/pollChart.client.js')
+        new Clipboard('.btn');

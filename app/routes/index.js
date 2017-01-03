@@ -89,6 +89,16 @@ module.exports = function (app, passport) {
             });
         });
 
+    app.route('/polls/:id/share')
+        .get(isLoggedIn, pollHandler.getPoll, function (req, res) {
+            var poll = req.poll;
+            var webroot = req.protocol + '://' + req.get('host');
+            // console.log('/polls/:id/share: poll = ', JSON.stringify(poll));
+            console.log('/polls/:id/share: webroot = ', webroot);
+            res.render('polls/share', {poll: poll, webroot: webroot});
+        })
+        .post(pollHandler.votePoll);
+
     app.route('/polls/:id/vote')
         .get(pollHandler.getPoll, function (req, res) {
             var poll = req.poll;

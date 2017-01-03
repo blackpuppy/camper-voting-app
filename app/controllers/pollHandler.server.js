@@ -21,7 +21,11 @@ function PollHandler () {
         Poll
             .findOne({'_id': req.params.id})
             .exec(function (err, poll) {
-                if (err) { throw err; }
+                if (err) {
+                    // throw err;
+                    req.poll = null;
+                    return next();
+                }
 
                 // console.log('getPoll: poll = ', JSON.stringify(poll));
 

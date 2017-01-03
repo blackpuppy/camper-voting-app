@@ -45,6 +45,10 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 0;
 }
 
+button {
+	cursor: pointer;
+}
+
 /****** Header Styling ******/
 
 header p {
@@ -222,10 +226,6 @@ span {
 
 .poll-item {
 	padding: 10px;
-}
-
-.poll-item button {
-	cursor: pointer;
 }
 
 .btn-delete-poll {	/* Styling for delete-poll button */
