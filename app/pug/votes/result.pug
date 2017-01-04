@@ -5,12 +5,16 @@ block content
         h2 #{poll.question}
         //- .container
         //-     p
-        //-         each option in poll.options
-        //-             span #{option.text}
-        //-             | #{' - '}
-        //-             span #{option.votes}
+        //-         | Select a chart type:
+        //-         br/
+        //-         each type in ['Pie', 'Bar']
+        //-             label
+        //-                 input(type='radio', name='chart-type', value=type)
+        //-                 | #{type + ' Chart'}
         //-             br/
         .vote-chart
+        .container
+            canvas.chart-ctx(width='500' height='400')
     else
         .container
             | #{'The poll does not exist. Back to '}
@@ -20,6 +24,8 @@ block content
 block append scripts
     = '\n'
     script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
+    = '\n'
+    script(type='text/javascript', src='/public/js/chart.js/dist/Chart.min.js')
     = '\n'
     script(type='text/javascript').
         var poll = JSON.parse('!{pollJson}');

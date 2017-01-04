@@ -239,6 +239,13 @@ span {
 	/*width: 50%;*/
 }
 
+.chart-ctx {
+	display: block;
+	margin: 0 auto;
+	width: 500px !important;
+	height: 400px !important;
+}
+
 .addthis_inline_share_toolbox .at-share-btn-elements {
 	text-align: center;
 }
