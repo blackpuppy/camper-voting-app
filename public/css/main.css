@@ -238,3 +238,7 @@ span {
 	margin: 0 auto;
 	/*width: 50%;*/
 }
+
+.addthis_inline_share_toolbox .at-share-btn-elements {
+	text-align: center;
+}

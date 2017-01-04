@@ -7,6 +7,8 @@ block content
             p
                 input(id='poll-url', type='text', value=webroot + '/polls/' + poll._id + '/vote')
                 button(class='btn btn-copy-url', data-clipboard-target='#poll-url') Copy URL
+            br/
+            .addthis_inline_share_toolbox
         br/
         .container
             .btn-container
@@ -25,3 +27,5 @@ block append scripts
     = '\n'
     script(type='text/javascript').
         new Clipboard('.btn');
+    = '\n'
+    script(type='text/javascript', src='//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-586b43b034ee9763')
