@@ -12,7 +12,7 @@ block content
         //-                 input(type='radio', name='chart-type', value=type)
         //-                 | #{type + ' Chart'}
         //-             br/
-        .vote-chart
+        #vote-chart.vote-chart
         .container
             canvas.chart-ctx(width='500' height='400')
     else
@@ -26,6 +26,8 @@ block append scripts
     script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
     = '\n'
     script(type='text/javascript', src='/public/js/chart.js/dist/Chart.min.js')
+    = '\n'
+    script(type='text/javascript', src='http://code.highcharts.com/highcharts.js')
     = '\n'
     script(type='text/javascript').
         var poll = JSON.parse('!{pollJson}');

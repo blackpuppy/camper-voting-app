@@ -233,10 +233,15 @@ span {
 	color: white;
 }
 
+.vote-chart {
+	width: 500px;
+	height: 400px;
+	margin: 0 auto;
+}
+
 .vote-chart div div {
 	display: block;
 	margin: 0 auto;
-	/*width: 50%;*/
 }
 
 .chart-ctx {

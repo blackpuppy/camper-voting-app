@@ -64,8 +64,6 @@
     //     chart.draw();
     // };
 
-    // drawGoogle();
-
     var drawChartJs = function() {
         var ctx = document.querySelector(".chart-ctx");
         var labels = poll.options.map(function (v) {
@@ -112,7 +110,41 @@
         });
     };
 
-    drawChartJs();
+    var drawHighcharts = function() {
+        var texts = poll.options.map(function (v) {
+            return v.text;
+        });
+        var votes = poll.options.map(function (v) {
+            return {
+                name: v.text,
+                y: v.votes || 0
+            };
+        });
+        var myChart = Highcharts.chart('vote-chart', {
+            chart: {
+                type: Math.random() < 0.5 ? 'pie' : 'bar'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: texts
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                }
+            },
+            series: [{
+                name: 'Votes',
+                data: votes
+            }]
+        });
+    };
+
+    // drawGoogle();
+    // drawChartJs();
+    drawHighcharts();
 
     // var chartTypes = document.getElementsByName('chart-type');
     // var prev = null;
