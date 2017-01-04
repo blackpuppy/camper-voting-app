@@ -7,7 +7,9 @@ block content
             .btn-container
                 //- a(href='/polls/' + poll._id) #{poll.question}
                 a(href='/polls/' + poll._id + '/vote', class='btn btn-vote-poll') Vote
-        .vote-chart
+        #vote-chart.vote-chart
+        .container
+            canvas.chart-ctx(width='500' height='400')
         br/
         .container
             .btn-container
