@@ -10,6 +10,7 @@ block content
                         a(href='/polls/' + poll._id) #{poll.question}
                         a(href='/polls/' + poll._id + '/vote', class='btn btn-vote-poll') Vote
                         a(href='/polls/' + poll._id + '/share', class='btn btn-share-poll') Share
+                        a(href='/polls/' + poll._id + '/edit', class='btn btn-edit-poll') Edit
                         button(class='btn btn-delete-poll', data-poll-id=poll._id) Delete
             .container
                 .btn-container

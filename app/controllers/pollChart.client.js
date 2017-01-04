@@ -22,9 +22,11 @@
         data.addColumn('string', 'Option');
         data.addColumn('number', 'Votes');
         var votes = poll.options.map(function (v) {
-            return [v.text, v.votes];
+            return [v.text, v.votes || 0];
         });
         data.addRows(votes);
+
+        // console.log('pollChart.client.js: votes = ', votes);
 
         // Set chart options
         var options = {

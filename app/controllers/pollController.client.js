@@ -4,7 +4,8 @@
 
     var optionContainer = document.querySelector('.option-container');
     var addOptButton = document.querySelector('.btn-add-option');
-    var submitNewPollButton = document.querySelector('.btn-submit-new-poll');
+    var saveNewPollButton = document.querySelector('.btn-save-new-poll');
+    var savePollButton = document.querySelector('.btn-save-poll');
     var deletePollButton = document.querySelector('.btn-delete-poll');
     var submitVoteButton = document.querySelector('.btn-submit-vote');
     var apiUrl = appUrl + '/api/polls';
@@ -27,8 +28,8 @@
         optionContainer.appendChild(content);
     }, false);
 
-    submitNewPollButton &&
-    submitNewPollButton.addEventListener('click', function (e) {
+    saveNewPollButton &&
+    saveNewPollButton.addEventListener('click', function (e) {
         e.preventDefault();
 
         var options = [];
@@ -43,10 +44,41 @@
             options: options
         };
 
-        console.log('form submit: poll = ', poll);
+        console.log('form save new: poll = ', poll);
 
         ajaxFunctions.ajaxRequest('POST', apiUrl, function (data) {
             var result = JSON.parse(data);
+
+            if (result.result === 'OK') {
+                window.location.replace('/polls/' + result.poll._id);
+            }
+        }, JSON.stringify(poll));
+    }, false);
+
+    savePollButton &&
+    savePollButton.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        var options = [];
+        document.getElementsByName('option[]').forEach(function (input) {
+            if (!input.hasAttribute('disabled')) {
+                options.push({
+                    text: input.value
+                });
+            }
+        });
+        var poll = {
+            _id: document.getElementsByName('_id')[0].value,
+            question: document.getElementsByName('question')[0].value,
+            options: options
+        };
+
+        console.log('save existing poll = ', poll);
+
+        ajaxFunctions.ajaxRequest('PUT', apiUrl + '/' + poll._id, function (data) {
+            var result = JSON.parse(data);
+
+            console.log('return result = ', result);
 
             if (result.result === 'OK') {
                 window.location.replace('/polls/' + result.poll._id);
@@ -72,9 +104,4 @@
             }
         });
     }, false);
-
-    // submitNewPollButton &&
-    // submitNewPollButton.addEventListener('click', function (e) {
-    //     e.preventDefault();
-    // }, false);
 })();

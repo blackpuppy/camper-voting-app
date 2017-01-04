@@ -13,7 +13,7 @@ function PollHandler () {
 
                 // console.log('getPolls: polls = ', JSON.stringify(polls));
 
-                res.render('polls/mypolls', {polls: polls});
+                res.render('polls/list', {polls: polls});
             });
     };
 
@@ -29,7 +29,7 @@ function PollHandler () {
 
                 // console.log('getPoll: poll = ', JSON.stringify(poll));
 
-                // res.render('polls/mypoll', {poll: poll});
+                // res.render('polls/view', {poll: poll});
 
                 req.poll = poll;
                 return next();
@@ -51,6 +51,29 @@ function PollHandler () {
             if (err) { throw err; }
 
             // console.log('saved new poll: ', poll);
+
+            res.setHeader('Content-Type', 'application/json');
+            res.json({result: 'OK', poll: poll});
+        });
+    };
+
+    this.updatePoll = function (req, res) {
+        console.log('updatePoll(): req.body = ', req.body);
+        console.log('updatePoll(): req.params.id = ', req.params.id);
+
+        Poll.findOneAndUpdate({
+            _id: req.params.id,
+        }, {
+            $set: {
+                question: req.body.question
+            },
+            $pushAll: {
+                options: req.body.options
+            }
+        }, function (err, poll) {
+            if (err) { throw err; }
+
+            console.log('saved poll: ', poll);
 
             res.setHeader('Content-Type', 'application/json');
             res.json({result: 'OK', poll: poll});
