@@ -26,6 +26,8 @@ block append scripts
     script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js')
     = '\n'
     script(type='text/javascript').
-        new Clipboard('.btn');
+        new Clipboard('.btn-copy-url').on('success', function(e) {
+            e.trigger.firstChild.data = "Copied";
+        });
     = '\n'
     script(type='text/javascript', src='https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-586b43b034ee9763')
