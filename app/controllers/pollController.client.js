@@ -2,13 +2,19 @@
 
 (function () {
 
-    var optionContainer = document.querySelector('.option-container');
-    var addOptButton = document.querySelector('.btn-add-option');
-    var saveNewPollButton = document.querySelector('.btn-save-new-poll');
-    var savePollButton = document.querySelector('.btn-save-poll');
-    var deletePollButton = document.querySelector('.btn-delete-poll');
-    var submitVoteButton = document.querySelector('.btn-submit-vote');
-    var apiUrl = appUrl + '/api/polls';
+    var addEventListenerList = function (list, event, fn) {
+        for (var i = 0, len = list.length; i < len; i++) {
+            list[i].addEventListener(event, fn, false);
+        }
+    }
+
+    var optionContainer = document.querySelector('.option-container'),
+        addOptButton = document.querySelector('.btn-add-option'),
+        saveNewPollButton = document.querySelector('.btn-save-new-poll'),
+        savePollButton = document.querySelector('.btn-save-poll'),
+        submitVoteButton = document.querySelector('.btn-submit-vote'),
+        deletePollButton = document.querySelectorAll('.btn-delete-poll'),
+        apiUrl = appUrl + '/api/polls';
 
     addOptButton &&
     addOptButton.addEventListener('click', function (e) {
@@ -87,13 +93,21 @@
     }, false);
 
     deletePollButton &&
-    deletePollButton.addEventListener('click', function (e) {
+    addEventListenerList(deletePollButton, 'click', function (e) {
+        // console.log('deletePollButton clicked');
+
         e.preventDefault();
 
-        var id = deletePollButton.getAttribute('data-poll-id');
+        var id = this.getAttribute('data-poll-id');
         // console.log('deletePollButton.data-poll-id = ', id);
 
         var deleteApiUrl = apiUrl + '/' + id;
+        // console.log('deleteApiUrl = ', deleteApiUrl);
+
+        if (!confirm('Are you sure you want to delete the poll?')) {
+            return;
+        }
+
         ajaxFunctions.ajaxRequest('DELETE', deleteApiUrl, function (data) {
             console.log('DELETE ', deleteApiUrl, ': data = ', data);
             var result = JSON.parse(data);
@@ -103,5 +117,5 @@
                 window.location.replace('/polls');
             }
         });
-    }, false);
+    });
 })();
