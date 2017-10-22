@@ -1,15 +1,15 @@
 'use strict';
 
-var express = require('express');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var path = require('path');
-
-var routes = require('./app/routes/index.js');
+var express = require('express'),
+	mongoose = require('mongoose'),
+	passport = require('passport'),
+	session = require('express-session'),
+	bodyParser = require('body-parser'),
+	path = require('path'),
+	routes = require('./app/routes/index.js');
 
 var app = express();
+
 require('dotenv').load();
 require('./app/config/passport')(passport);
 
