@@ -24,7 +24,7 @@
   "author": "Zhu Ming",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.15.2",
+    "body-parser": "^1.20.3",
     "chart.js": "^2.9.4",
     "dotenv": "^1.2.0",
     "express": "^4.17.3",
